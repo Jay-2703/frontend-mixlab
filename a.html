@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management System</title>
+    <link rel="stylesheet" href="a.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>User Management</h1>
+            <p>Monitor, update, and manage all user accounts within the platform</p>
+        </div>
+
+        <div class="controls">
+            <div class="search-filter-row">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Search by username or email...">
+                </div>
+                <div class="filter-group">
+                    <select id="roleFilter">
+                        <option value="">All Roles</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Instructor">Instructor</option>
+                        <option value="Student">Student</option>
+                    </select>
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Registration Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                </tbody>
+            </table>
+            <div id="noResults" class="no-results" style="display: none;">
+                No users found matching your criteria.
+            </div>
+        </div>
+    </div>
+
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>User Details</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ✅ EDIT USER MODAL -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Edit User</h2>
+            <button class="close-btn" onclick="closeEditModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="editForm">
+                <div class="user-profile">
+                    <div class="profile-item">
+                        <label>Username</label>
+                        <input id="editUsername" type="text" required />
+                    </div>
+
+                    <div class="profile-item">
+                        <label>Email</label>
+                        <input id="editEmail" type="email" required />
+                    </div>
+
+                    <div class="profile-item">
+                        <label>Role</label>
+                        <select id="editRole">
+                            <option value="Admin">Admin</option>
+                            <option value="Instructor">Instructor</option>
+                            <option value="Student">Student</option>
+                        </select>
+                    </div>
+
+                    <div class="profile-item">
+                        <label>Status</label>
+                        <select id="editStatus">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-edit" style="margin-top:20px;">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <div id="deleteModal" class="modal">
+    <div class="modal-content" style="max-width:500px;">
+        <div class="modal-header">
+            <h2>Confirm Delete</h2>
+            <button class="close-btn" onclick="closeDeleteModal()">&times;</button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+            <p id="deleteMessage" style="font-size:16px;margin-bottom:20px;"></p>
+            <button class="btn btn-delete" onclick="confirmDelete()">Delete</button>
+            <button class="btn btn-view" onclick="closeDeleteModal()" style="margin-left:10px;">Cancel</button>
+        </div>
+    </div>
+</div>
+    <script src="a.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MixLab Admin Panel</title>
+    <link rel="stylesheet" href="dash.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .icon::before {
+            content: "\25B6";
+            margin-right: 8px;
+            font-weight: 700;
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.9);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <!-- ✅ UPDATED SIDEBAR (Based on your request) -->
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="icon"></span>
+            <span class="logo-text">MixLab Admin</span>
+        </div>
+
+        <button class="collapse-btn" aria-label="Toggle menu">☰</button>
+
+        <nav class="nav-menu">
+            <ul>
+                <li class="active"><a href="#"><span class="icon"></span>Dashboard</a></li>
+                <li><a href="#"><span class="icon"></span>Appointments</a></li>
+                <li><a href="#"><span class="icon"></span>Lessons</a></li>
+                <li><a href="#"><span class="icon"></span>Users</a></li>
+                <li><a href="#"><span class="icon"></span>Reports</a></li>
+                <li><a href="#"><span class="icon"></span>Announcements</a></li>
+                <li><a href="#"><span class="icon"></span>Settings</a></li>
+                <li><a href="#" class="logout-link"><span class="icon"></span>Logout</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- ✅ MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- ✅ TOP BAR -->
+        <header class="topbar">
+            <div class="left-top">
+                <div class="page-title">Dashboard Overview</div>
+
+                <div class="search-wrap">
+                    <input id="searchInput" class="search-input"
+                           type="search"
+                           placeholder="Search users, courses, quests..."
+                           aria-label="Search">
+                </div>
+            </div>
+
+            <div class="user-profile">
+                <button class="action-btn"
+                        title="Add user"
+                        onclick="window.location.href='../register.html'">+ Add User</button>
+
+                <button id="exportCsvBtn"
+                        class="action-btn"
+                        title="Export table">Export CSV</button>
+
+                <!-- ✅ Notification icon -->
+                <span class="notification-icon icon"
+                      title="Notifications"
+                      tabindex="0"></span>
+
+                <span class="user-name">Admin Musician</span>
+                <div class="user-avatar">AM</div>
+            </div>
+        </header>
+
+        <!-- ✅ STATS WIDGETS -->
+        <section class="dashboard-widgets">
+            <div class="widget total-users">
+                <h3>Total Users</h3>
+                <p>12,450</p>
+                <span>+50 today</span>
+            </div>
+            <div class="widget active-courses">
+                <h3>Active Courses</h3>
+                <p>45</p>
+                <span>New Guitar Course!</span>
+            </div>
+            <div class="widget highscore">
+                <h3>Top High Score</h3>
+                <p>Level 99 - Maestro</p>
+                <span>Check Leaderboard</span>
+            </div>
+            <div class="widget new-registrations">
+                <h3>New Signups</h3>
+                <p>321</p>
+                <span>This Week</span>
+            </div>
+        </section>
+
+        <!-- ✅ ACTIVITY TABLE -->
+        <section class="latest-activity">
+            <h2>Latest Student Activity</h2>
+
+            <div class="table-controls">
+                <div class="left-controls">
+                    <label>Filter:
+                        <select id="statusFilter">
+                            <option value="all">All</option>
+                            <option value="completed">Completed</option>
+                            <option value="xp">Has XP</option>
+                        </select>
+                    </label>
+
+                    <label>Per page:
+                        <select id="pageSizeSelect">
+                            <option>5</option>
+                            <option selected>10</option>
+                            <option>20</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="right-controls">
+                    <button id="runTestBtn" class="action-btn">Run self-test</button>
+                </div>
+            </div>
+
+            <table id="activityTable">
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Quest/Lesson</th>
+                    <th>Score/XP</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Guitarkid01</td>
+                    <td>Chord Theory I Quiz</td>
+                    <td>+500 XP</td>
+                    <td>5 mins ago</td>
+                    <td class="action-buttons">
+                        <button class="btn-small btn-edit" data-row="1">Edit</button>
+                        <button class="btn-small btn-remove" data-row="1">Delete</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>DrummerDude</td>
+                    <td>Percussion Rhythms Module</td>
+                    <td>Completed</td>
+                    <td>1 hour ago</td>
+                    <td class="action-buttons">
+                        <button class="btn-small btn-edit" data-row="2">Edit</button>
+                        <button class="btn-small btn-remove" data-row="2">Delete</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>PianoProdigy</td>
+                    <td>Melody Composition Quest</td>
+                    <td>+1200 XP</td>
+                    <td>3 hours ago</td>
+                    <td class="action-buttons">
+                        <button class="btn-small btn-edit" data-row="3">Edit</button>
+                        <button class="btn-small btn-remove" data-row="3">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="pagination" id="pagination"></div>
+        </section>
+
+        <!-- ✅ REPLACEMENT FOR MESSAGES → NOW NOTIFICATIONS -->
+        <section class="notifications-panel">
+            <h2>Notifications</h2>
+
+            <div class="notif-item">
+                System update scheduled for tonight at 11 PM.
+            </div>
+            <div class="notif-item">
+                15 new users joined today.
+            </div>
+            <div class="notif-item">
+                Instructor “Sarah” added a new Guitar Lesson.
+            </div>
+            <div class="notif-item">
+                Weekly performance report is ready to export.
+            </div>
+        </section>
+
+    </main>
+</div>
+
+
+<!-- ✅ EDIT MODAL (unchanged from your code) -->
+<div id="editModal" class="modal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <header class="modal-header">
+            <h3 id="modalTitle">Edit Activity</h3>
+            <button class="modal-close" aria-label="Close">×</button>
+        </header>
+
+        <div class="modal-body">
+            <form id="editForm">
+                <div class="form-row"><label>User <span id="modalUser"/></label></div>
+                <div class="form-row"><label>Lesson <input id="modalLesson" type="text"/></label></div>
+                <div class="form-row"><label>Score/XP <input id="modalScore" type="text"/></label></div>
+                <div class="form-actions">
+                    <button type="submit" class="action-btn">Save</button>
+                    <button type="button" class="action-btn" id="modalCancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="dash.js"></script>
+
+</body>
+</html>

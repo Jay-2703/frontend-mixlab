@@ -19,25 +19,7 @@ const users = [
             { lesson: "React Fundamentals", instructor: "Sarah Wilson", date: "2024-10-28", status: "Completed" }
         ]
     },
-    {
-        id: 2,
-        username: "sarah_wilson",
-        email: "sarah.wilson@example.com",
-        role: "Instructor",
-        registrationDate: "2023-08-20",
-        status: "Active",
-        xp: 5420,
-        level: 15,
-        xpForNextLevel: 6000,
-        completedModules: 28,
-        quizResults: "92%",
-        progressPercentage: 90,
-        badges: ["Expert Instructor", "Top Rated", "Student Favorite", "5-Star Reviews"],
-        appointments: [
-            { lesson: "Advanced JavaScript", instructor: "Self-taught", date: "2024-11-08", status: "Upcoming" },
-            { lesson: "Node.js Workshop", instructor: "Self-taught", date: "2024-10-25", status: "Completed" }
-        ]
-    },
+    
     {
         id: 3,
         username: "mike_johnson",
